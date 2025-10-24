@@ -120,7 +120,7 @@
     <div class="product-grid">
         <!-- Product 1 -->
         <div class="product-card">
-            <img src="https://images.unsplash.com/photo-1579758629939-037fdd6b88c8" alt="Dumbbells">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStsuxFx_26d4iKsumigu0MaVLkM0y6mxqvGw&s" alt="Dumbbells">
             <h3>Dumbbells Set</h3>
             <p>Perfect for strength training at home or the gym.</p>
             <p class="price">$50</p>
@@ -138,7 +138,7 @@
 
         <!-- Product 3 -->
         <div class="product-card">
-            <img src="https://images.unsplash.com/photo-1605296867424-35fc25c92101" alt="Plates">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHRhGmxCPMDHB7YALaZX2pfXOQDwKHD40Q9A&s" alt="Plates">
             <h3>Weight Plates</h3>
             <p>Durable steel plates available in multiple weights.</p>
             <p class="price">$80</p>
@@ -147,7 +147,7 @@
 
         <!-- Product 4 -->
         <div class="product-card">
-            <img src="https://images.unsplash.com/photo-1583454110559-21d8e1a1a2d3" alt="Machine">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYFF5KbjGEU00k8rqvTOlaULJybv8v2cSB7Q&s" alt="Machine">
             <h3>Multi Gym Machine</h3>
             <p>Full body workout station for home or gym use.</p>
             <p class="price">$450</p>
@@ -156,7 +156,7 @@
 
         <!-- Product 5 -->
         <div class="product-card">
-            <img src="https://images.unsplash.com/photo-1610430537406-9adf5ff8e630" alt="Resistance Bands">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxzBEpLIAyu-iIvvfUcg_M5aChLMOyQdkAdw&s" alt="Resistance Bands">
             <h3>Resistance Bands Set</h3>
             <p>Compact and portable for strength and mobility training.</p>
             <p class="price">$25</p>
@@ -165,7 +165,7 @@
 
         <!-- Product 6 -->
         <div class="product-card">
-            <img src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1" alt="Kettlebell">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSATdXobRMIfUShpnA4oDl3URNRrmNe871nvA&s" alt="Kettlebell">
             <h3>Kettlebell</h3>
             <p>Ideal for functional fitness and cardio workouts.</p>
             <p class="price">$60</p>
@@ -174,7 +174,7 @@
 
         <!-- Product 7 -->
         <div class="product-card">
-            <img src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1" alt="Jump Rope">
+            <img src="https://www.elitefts.com/media/catalog/product/cache/36d7bfb33e8965fc8880f222555067c7/t/a/ta128_1.jpg" alt="Jump Rope">
             <h3>Speed Jump Rope</h3>
             <p>Improve stamina and coordination with this lightweight rope.</p>
             <p class="price">$15</p>
@@ -183,7 +183,7 @@
 
         <!-- Product 8 -->
         <div class="product-card">
-            <img src="https://images.unsplash.com/photo-1598970434795-0c54fe7c0642" alt="Gloves">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_2aVMJU1UAgTGBgCrmg5pb7OhdI8-najicQ&s" alt="Gloves">
             <h3>Workout Gloves</h3>
             <p>Protect your hands and improve grip during lifts.</p>
             <p class="price">$20</p>
@@ -192,7 +192,7 @@
 
         <!-- Product 9 -->
         <div class="product-card">
-            <img src="https://images.unsplash.com/photo-1599058917212-d750089bc07a" alt="Mat">
+            <img src="https://m.media-amazon.com/images/I/31rlkB1gwwL._SR290,290_.jpg" alt="Mat">
             <h3>Yoga Mat</h3>
             <p>Non-slip and durable mat for yoga and stretching.</p>
             <p class="price">$30</p>
@@ -201,7 +201,7 @@
 
         <!-- Product 10 -->
         <div class="product-card">
-            <img src="https://images.unsplash.com/photo-1617089260923-56c4b6b9e94d" alt="Gym Bag">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcgyOAAmzhO2OFXv_m5-26_SGuqmYwGAuprg&s" alt="Gym Bag">
             <h3>Gym Bag</h3>
             <p>Spacious and stylish bag to carry all your gear.</p>
             <p class="price">$45</p>
@@ -210,7 +210,7 @@
 
         <!-- Product 11 -->
         <div class="product-card">
-            <img src="https://images.unsplash.com/photo-1598970434795-0c54fe7c0642" alt="Towel">
+            <img src="https://m.media-amazon.com/images/I/41rU4iv7-nL._AC_US1000_.jpg" alt="Towel">
             <h3>Gym Towel</h3>
             <p>Soft, absorbent towel ideal for intense workouts.</p>
             <p class="price">$10</p>

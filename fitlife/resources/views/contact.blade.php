@@ -131,7 +131,7 @@
     <div id="success-message" class="success-message">
         ✅ Thank you for contacting FitLife Gym! We’ll get back to you soon.
     </div>
-    <p class="location"><strong>📍 Location:</strong> 123 Fitness Street, Downtown</p>
+    <p class="location"><strong>📍 Location:</strong>Szabist 100 Campus,Clifton Karachi</p>
 </div>
 
 <script>

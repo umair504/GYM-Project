@@ -155,7 +155,7 @@
   }
 
   .home-visual {
-    order: -1; /* show image first on small screens */
+    order: -1; 
   }
 
   .home-text h1 {
