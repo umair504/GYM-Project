@@ -3,225 +3,200 @@
 @section('title', 'Welcome to FitLife Gym')
 
 @section('content')
-<!-- Internal CSS for Home Page (self-contained) -->
 <style>
-/* Reset-ish (page-local) */
-.home-section *, .home-section *::before, .home-section *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f7f7f7;
+    }
 
-/* Page background & container */
-.home-section {
-  min-height: calc(100vh - 140px); /* account for header/footer */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 64px 20px;
-  background: linear-gradient(135deg, #e9f7ef 0%, #f7fbff 40%, #f1f8f4 100%);
-  color: #0f1724;
-}
+    .hero {
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1558611848-73f7eb4001a1');
+        background-size: cover;
+        background-position: center;
+        color: white;
+        text-align: center;
+        padding: 120px 20px;
+    }
 
-/* Inner content card */
-.home-card {
-  width: 100%;
-  max-width: 1100px;
-  display: grid;
-  grid-template-columns: 1fr 480px;
-  gap: 32px;
-  align-items: center;
-  background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(250,250,250,0.98));
-  border-radius: 18px;
-  padding: 36px;
-  box-shadow: 0 10px 40px rgba(13, 18, 25, 0.08);
-  border: 1px solid rgba(15, 23, 36, 0.04);
-}
+    .hero h1 {
+        font-size: 3rem;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+    }
 
-/* Left column (text) */
-.home-text h1 {
-  font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  font-size: 2.6rem;
-  line-height: 1.05;
-  color: #071022;
-  margin-bottom: 14px;
-  letter-spacing: -0.5px;
-}
+    .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+    }
 
-.home-text p {
-  color: #334155;
-  font-size: 1.05rem;
-  line-height: 1.6;
-  margin-bottom: 14px;
-}
+    .btn-main {
+        background: #27ae60;
+        color: white;
+        padding: 12px 25px;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: 0.3s;
+        font-size: 1.1rem;
+    }
 
-/* Accent lead paragraph */
-.home-text .lead {
-  font-weight: 600;
-  color: #0b3b2a;
-  margin-bottom: 18px;
-}
+    .btn-main:hover {
+        background: #219150;
+        transform: scale(1.05);
+    }
 
-/* CTA row */
-.cta-row {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  margin-top: 18px;
-}
+    .section {
+        padding: 60px 0;
+        text-align: center;
+        background: white;
+        margin: 30px 0;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(134, 126, 126, 0.1);
+    }
 
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: linear-gradient(90deg, #1f8ef1 0%, #27ae60 100%);
-  color: #fff;
-  padding: 12px 18px;
-  border-radius: 10px;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-  transition: transform .16s ease, box-shadow .16s ease, opacity .16s ease;
-  box-shadow: 0 8px 24px rgba(39, 174, 96, 0.12);
-}
+    .section h2 {
+        color: #27ae60;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        font-size: 2rem;
+    }
 
-.btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 14px 40px rgba(31, 142, 241, 0.12);
-}
+    .section p {
+        color: #555;
+        max-width: 700px;
+        margin: 0 auto 40px;
+        font-size: 1.1rem;
+    }
 
-/* Secondary button look */
-.btn.ghost {
-  background: transparent;
-  border: 1px solid rgba(7,16,34,0.06);
-  color: #0b3b2a;
-  box-shadow: none;
-}
+    .home-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        padding: 0 40px;
+    }
 
-/* Right column (image / highlights) */
-.home-visual {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  align-items: center;
-  justify-content: center;
-}
+    .home-card {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
 
-/* Hero image container */
-.hero-image {
-  width: 100%;
-  max-width: 420px;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 18px 40px rgba(9, 30, 14, 0.06);
-  border: 1px solid rgba(15,23,36,0.04);
-}
+    .home-card:hover {
+        transform: translateY(-5px);
+    }
 
-/* Small feature badges below image */
-.feature-badges {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 8px;
-}
+    .home-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
 
-.badge {
-  background: #f1fbf6;
-  color: #0b3b2a;
-  border-radius: 999px;
-  padding: 8px 12px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  box-shadow: 0 6px 18px rgba(7, 19, 15, 0.04);
-  border: 1px solid rgba(11,59,42,0.04);
-}
+    .home-card h3 {
+        font-size: 1.2rem;
+        margin: 10px 0 5px;
+        color: #333;
+    }
 
-/* Decorative underline */
-.underline {
-  height: 6px;
-  width: 84px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, rgba(31,142,241,0.95), rgba(39,174,96,0.95));
-  margin: 18px 0;
-}
+    .home-card p {
+        color: #555;
+        margin-bottom: 10px;
+    }
 
-/* Responsive adjustments */
-@media (max-width: 980px) {
-  .home-card {
-    grid-template-columns: 1fr;
-    padding: 26px;
-  }
+    .price {
+        color: #27ae60;
+        font-weight: bold;
+    }
 
-  .home-visual {
-    order: -1; /* show image first on small screens */
-  }
+    .btn-small {
+        background: #27ae60;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
 
-  .home-text h1 {
-    font-size: 2.2rem;
-  }
-}
-
-@media (max-width: 520px) {
-  .home-section {
-    padding: 36px 12px;
-  }
-
-  .home-card {
-    padding: 18px;
-    gap: 18px;
-  }
-
-  .home-text h1 {
-    font-size: 1.8rem;
-  }
-
-  .btn {
-    padding: 10px 14px;
-    font-size: 0.95rem;
-  }
-}
-
-/* Small utility classes for alignment within page (optional) */
-.text-muted { color: #64748b; }
-.center { text-align: center; }
-.m-b-8 { margin-bottom: 8px; }
-.m-b-16 { margin-bottom: 16px; }
-
+    .btn-small:hover {
+        background: #219150;
+    }
 </style>
 
-<!-- Markup -->
-<div class="home-section">
-  <div class="home-card" role="region" aria-label="FitLife Gym introduction">
-    <div class="home-text">
-      <div class="underline" aria-hidden="true"></div>
-      <h1>Welcome to FitLife Gym</h1>
-      <p class="lead">Transform your body, mind, and life — one workout at a time.</p>
-      <p>
-        We offer premium equipment, expert trainers, and world-class facilities to help you reach your goals.
-        Whether you're just starting or training for performance, FitLife is your community for progress.
-      </p>
-
-      <div class="cta-row">
-        <a href="{{ route('membership') }}" class="btn" aria-label="See membership plans">Join Now</a>
-        <a href="{{ route('accessories') }}" class="btn ghost" aria-label="View accessories">Shop Gear</a>
-      </div>
-    </div>
-
-    <div class="home-visual" aria-hidden="false">
-      <div class="hero-image" role="img" aria-label="People working out in gym">
-        <!-- Use your own image or keep the unsplash link -->
-        <img src="https://thumbs.dreamstime.com/b/weightlifter-clapping-hands-preparing-workout-gym-focus-dust-112033565.jpg" alt="Gym workout scene">
-      </div>
-
-      <div class="feature-badges" aria-hidden="true">
-        <div class="badge">Personal Trainers</div>
-        <div class="badge">24/7 Access</div>
-        <div class="badge">Group Classes</div>
-        <div class="badge">Nutrition Plans</div>
-      </div>
-    </div>
-  </div>
+<div class="hero">
+    <h1>Welcome to FitLife Gym</h1>
+    <p>Train Hard. Stay Strong. Live Fit.</p>
+    <a href="{{ route('membership') }}" class="btn-main">Join Now</a>
 </div>
+
+<!-- Popular Accessories Section -->
+<div class="section">
+    <h2>Popular Accessories</h2>
+    <p>Check out some of our top-selling gym equipment to take your workouts to the next level.</p>
+    <div class="home-grid">
+        <div class="home-card">
+            <img src="https://advancefitness.pk/wp-content/uploads/2020/10/IR-92022.jpg" alt="Dumbbells">
+            <h3>Dumbbells Set</h3>
+            <p class="price">$50</p>
+            <button class="btn-small" onclick="addToCart('Dumbbells Set', 50)">Add to Cart</button>
+        </div>
+        <div class="home-card">
+            <img src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1" alt="Barbell">
+            <h3>Olympic Barbell</h3>
+            <p class="price">$120</p>
+            <button class="btn-small" onclick="addToCart('Olympic Barbell', 120)">Add to Cart</button>
+        </div>
+        <div class="home-card">
+            <img src="https://media.biogen.co.za/wp-content/uploads/6009551985488-mens-gym-gloves-black-large.jpg" alt="Gloves">
+            <h3>Workout Gloves</h3>
+            <p class="price">$20</p>
+            <button class="btn-small" onclick="addToCart('Workout Gloves', 20)">Add to Cart</button>
+        </div>
+    </div>
+    <br>
+    <a href="{{ route('accessories') }}" class="btn-main">View All Accessories</a>
+</div>
+
+<!-- Membership Section -->
+<div class="section">
+    <h2>Our Memberships</h2>
+    <p>Choose from our flexible and affordable gym packages that suit every fitness goal.</p>
+    <div class="home-grid">
+        <div class="home-card">
+            <img src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77" alt="Bronze">
+            <h3>Bronze Plan</h3>
+            <p>Basic Gym Access</p>
+            <p class="price">$20/month</p>
+        </div>
+        <div class="home-card">
+            <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438" alt="Silver">
+            <h3>Silver Plan</h3>
+            <p>Full Gym Access + Trainer</p>
+            <p class="price">$40/month</p>
+        </div>
+        <div class="home-card">
+            <img src="https://images.unsplash.com/photo-1558611848-73f7eb4001a1" alt="Gold">
+            <h3>Gold Plan</h3>
+            <p>All Facilities + Sauna</p>
+            <p class="price">$60/month</p>
+        </div>
+    </div>
+    <br>
+    <a href="{{ route('membership') }}" class="btn-main">Explore Memberships</a>
+</div>
+
+<script>
+    // Add product to cart
+    function addToCart(name, price) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const existing = cart.find(item => item.name === name);
+        if (existing) {
+            existing.quantity++;
+        } else {
+            cart.push({ name, price, quantity: 1 });
+        }
+        localStorage.setItem('cart', JSON.stringify(cart));
+        alert(`${name} added to cart! 🛒`);
+    }
+</script>
 @endsection

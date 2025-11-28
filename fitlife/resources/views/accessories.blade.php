@@ -103,6 +103,81 @@
         z-index: 9999;
     }
 
+    /* Reviews Section */
+    .reviews-section {
+        background: white;
+        border-radius: 12px;
+        margin-top: 70px;
+        padding: 40px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+    }
+
+    .reviews-section h2 {
+        text-align: center;
+        color: #27ae60;
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+
+    .review {
+        border-bottom: 1px solid #eee;
+        padding: 15px 0;
+    }
+
+    .review:last-child {
+        border-bottom: none;
+    }
+
+    .review h4 {
+        margin: 0;
+        font-size: 1.1rem;
+        color: #333;
+    }
+
+    .review p {
+        margin: 5px 0;
+        color: #555;
+    }
+
+    .stars {
+        color: #f1c40f;
+        margin-bottom: 5px;
+    }
+
+    .add-review {
+        margin-top: 40px;
+        text-align: center;
+    }
+
+    .add-review input,
+    .add-review textarea,
+    .add-review select {
+        width: 80%;
+        max-width: 500px;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+    }
+
+    .add-review button {
+        background: #27ae60;
+        color: white;
+        border: none;
+        padding: 10px 25px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+    }
+
+    .add-review button:hover {
+        background: #219150;
+    }
+
     @media (max-width: 768px) {
         .accessories-page h1 {
             font-size: 2rem;
@@ -118,104 +193,68 @@
     <p>Upgrade your workouts with high-quality equipment from FitLife Gym!</p>
 
     <div class="product-grid">
-        <!-- Product 1 -->
-        <div class="product-card">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStsuxFx_26d4iKsumigu0MaVLkM0y6mxqvGw&s" alt="Dumbbells">
-            <h3>Dumbbells Set</h3>
-            <p>Perfect for strength training at home or the gym.</p>
-            <p class="price">$50</p>
-            <button onclick="addToCart('Dumbbells Set', 50, 'https://images.unsplash.com/photo-1579758629939-037fdd6b88c8')">Add to Cart</button>
-        </div>
+        <!-- 11 PRODUCTS -->
+        @php
+            $products = [
+                ['name' => 'Dumbbells Set', 'price' => 50, 'img' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStsuxFx_26d4iKsumigu0MaVLkM0y6mxqvGw&s'],
+                ['name' => 'Olympic Barbell', 'price' => 120, 'img' => 'https://images.unsplash.com/photo-1605296867304-46d5465a13f1'],
+                ['name' => 'Weight Plates', 'price' => 80, 'img' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHRhGmxCPMDHB7YALaZX2pfXOQDwKHD40Q9A&s'],
+                ['name' => 'Multi Gym Machine', 'price' => 450, 'img' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYFF5KbjGEU00k8rqvTOlaULJybv8v2cSB7Q&s'],
+                ['name' => 'Resistance Bands Set', 'price' => 25, 'img' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxzBEpLIAyu-iIvvfUcg_M5aChLMOyQdkAdw&s'],
+                ['name' => 'Kettlebell', 'price' => 60, 'img' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSATdXobRMIfUShpnA4oDl3URNRrmNe871nvA&s'],
+                ['name' => 'Speed Jump Rope', 'price' => 15, 'img' => 'https://www.elitefts.com/media/catalog/product/cache/36d7bfb33e8965fc8880f222555067c7/t/a/ta128_1.jpg'],
+                ['name' => 'Workout Gloves', 'price' => 20, 'img' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_2aVMJU1UAgTGBgCrmg5pb7OhdI8-najicQ&s'],
+                ['name' => 'Yoga Mat', 'price' => 30, 'img' => 'https://m.media-amazon.com/images/I/31rlkB1gwwL._SR290,290_.jpg'],
+                ['name' => 'Gym Bag', 'price' => 45, 'img' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcgyOAAmzhO2OFXv_m5-26_SGuqmYwGAuprg&s'],
+                ['name' => 'Gym Towel', 'price' => 10, 'img' => 'https://m.media-amazon.com/images/I/41rU4iv7-nL._AC_US1000_.jpg']
+            ];
+        @endphp
 
-        <!-- Product 2 -->
-        <div class="product-card">
-            <img src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1" alt="Barbell">
-            <h3>Olympic Barbell</h3>
-            <p>Heavy-duty barbell for serious lifters.</p>
-            <p class="price">$120</p>
-            <button onclick="addToCart('Olympic Barbell', 120, 'https://images.unsplash.com/photo-1605296867304-46d5465a13f1')">Add to Cart</button>
-        </div>
+        @foreach ($products as $p)
+            <div class="product-card">
+                <img src="{{ $p['img'] }}" alt="{{ $p['name'] }}">
+                <h3>{{ $p['name'] }}</h3>
+                <p class="price">${{ $p['price'] }}</p>
+                <button onclick="addToCart('{{ $p['name'] }}', {{ $p['price'] }})">Add to Cart</button>
+            </div>
+        @endforeach
+    </div>
+</div>
 
-        <!-- Product 3 -->
-        <div class="product-card">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHRhGmxCPMDHB7YALaZX2pfXOQDwKHD40Q9A&s" alt="Plates">
-            <h3>Weight Plates</h3>
-            <p>Durable steel plates available in multiple weights.</p>
-            <p class="price">$80</p>
-            <button onclick="addToCart('Weight Plates', 80, 'https://images.unsplash.com/photo-1605296867424-35fc25c92101')">Add to Cart</button>
+<!-- ✅ REVIEWS SECTION -->
+<div class="reviews-section">
+    <h2>Customer Reviews</h2>
+    <div id="reviews-list">
+        <div class="review">
+            <h4>Ali Khan</h4>
+            <div class="stars">★★★★★</div>
+            <p>"Amazing quality accessories! The dumbbells are perfect for my home gym."</p>
         </div>
+        <div class="review">
+            <h4>Sara Ahmed</h4>
+            <div class="stars">★★★★☆</div>
+            <p>"Loved the yoga mat! Comfortable and durable. Delivery was quick too."</p>
+        </div>
+        <div class="review">
+            <h4>Usman Tariq</h4>
+            <div class="stars">★★★★★</div>
+            <p>"Barbell set is top-notch. Definitely worth the price."</p>
+        </div>
+    </div>
 
-        <!-- Product 4 -->
-        <div class="product-card">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYFF5KbjGEU00k8rqvTOlaULJybv8v2cSB7Q&s" alt="Machine">
-            <h3>Multi Gym Machine</h3>
-            <p>Full body workout station for home or gym use.</p>
-            <p class="price">$450</p>
-            <button onclick="addToCart('Multi Gym Machine', 450, 'https://images.unsplash.com/photo-1583454110559-21d8e1a1a2d3')">Add to Cart</button>
-        </div>
-
-        <!-- Product 5 -->
-        <div class="product-card">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxzBEpLIAyu-iIvvfUcg_M5aChLMOyQdkAdw&s" alt="Resistance Bands">
-            <h3>Resistance Bands Set</h3>
-            <p>Compact and portable for strength and mobility training.</p>
-            <p class="price">$25</p>
-            <button onclick="addToCart('Resistance Bands Set', 25, 'https://images.unsplash.com/photo-1610430537406-9adf5ff8e630')">Add to Cart</button>
-        </div>
-
-        <!-- Product 6 -->
-        <div class="product-card">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSATdXobRMIfUShpnA4oDl3URNRrmNe871nvA&s" alt="Kettlebell">
-            <h3>Kettlebell</h3>
-            <p>Ideal for functional fitness and cardio workouts.</p>
-            <p class="price">$60</p>
-            <button onclick="addToCart('Kettlebell', 60, 'https://images.unsplash.com/photo-1605296867304-46d5465a13f1')">Add to Cart</button>
-        </div>
-
-        <!-- Product 7 -->
-        <div class="product-card">
-            <img src="https://www.elitefts.com/media/catalog/product/cache/36d7bfb33e8965fc8880f222555067c7/t/a/ta128_1.jpg" alt="Jump Rope">
-            <h3>Speed Jump Rope</h3>
-            <p>Improve stamina and coordination with this lightweight rope.</p>
-            <p class="price">$15</p>
-            <button onclick="addToCart('Speed Jump Rope', 15, 'https://images.unsplash.com/photo-1605296867304-46d5465a13f1')">Add to Cart</button>
-        </div>
-
-        <!-- Product 8 -->
-        <div class="product-card">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_2aVMJU1UAgTGBgCrmg5pb7OhdI8-najicQ&s" alt="Gloves">
-            <h3>Workout Gloves</h3>
-            <p>Protect your hands and improve grip during lifts.</p>
-            <p class="price">$20</p>
-            <button onclick="addToCart('Workout Gloves', 20, 'https://images.unsplash.com/photo-1598970434795-0c54fe7c0642')">Add to Cart</button>
-        </div>
-
-        <!-- Product 9 -->
-        <div class="product-card">
-            <img src="https://m.media-amazon.com/images/I/31rlkB1gwwL._SR290,290_.jpg" alt="Mat">
-            <h3>Yoga Mat</h3>
-            <p>Non-slip and durable mat for yoga and stretching.</p>
-            <p class="price">$30</p>
-            <button onclick="addToCart('Yoga Mat', 30, 'https://images.unsplash.com/photo-1599058917212-d750089bc07a')">Add to Cart</button>
-        </div>
-
-        <!-- Product 10 -->
-        <div class="product-card">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcgyOAAmzhO2OFXv_m5-26_SGuqmYwGAuprg&s" alt="Gym Bag">
-            <h3>Gym Bag</h3>
-            <p>Spacious and stylish bag to carry all your gear.</p>
-            <p class="price">$45</p>
-            <button onclick="addToCart('Gym Bag', 45, 'https://images.unsplash.com/photo-1617089260923-56c4b6b9e94d')">Add to Cart</button>
-        </div>
-
-        <!-- Product 11 -->
-        <div class="product-card">
-            <img src="https://m.media-amazon.com/images/I/41rU4iv7-nL._AC_US1000_.jpg" alt="Towel">
-            <h3>Gym Towel</h3>
-            <p>Soft, absorbent towel ideal for intense workouts.</p>
-            <p class="price">$10</p>
-            <button onclick="addToCart('Gym Towel', 10, 'https://images.unsplash.com/photo-1598970434795-0c54fe7c0642')">Add to Cart</button>
-        </div>
+    <!-- Add Review Form -->
+    <div class="add-review">
+        <h3>Leave a Review</h3>
+        <input type="text" id="reviewer-name" placeholder="Your Name" required><br>
+        <select id="review-rating">
+            <option value="5">★★★★★ - Excellent</option>
+            <option value="4">★★★★☆ - Good</option>
+            <option value="3">★★★☆☆ - Average</option>
+            <option value="2">★★☆☆☆ - Poor</option>
+            <option value="1">★☆☆☆☆ - Very Bad</option>
+        </select><br>
+        <textarea id="review-text" placeholder="Write your review..." rows="4" required></textarea><br>
+        <button onclick="addReview()">Submit Review</button>
     </div>
 </div>
 
@@ -224,22 +263,18 @@
 </div>
 
 <script>
-    // Initialize cart from localStorage or empty
+    // Initialize cart
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
     function addToCart(name, price) {
         const existingItem = cart.find(item => item.name === name);
-
         if (existingItem) {
             existingItem.quantity += 1;
         } else {
             cart.push({ name, price, quantity: 1 });
         }
-
         localStorage.setItem('cart', JSON.stringify(cart));
         showCartNotification();
-
-        // Optional: update cart count in navbar
         updateCartCount();
     }
 
@@ -259,7 +294,32 @@
         }
     }
 
-    // Update cart count on page load
+    // ✅ Add Review Function
+    function addReview() {
+        const name = document.getElementById('reviewer-name').value;
+        const rating = document.getElementById('review-rating').value;
+        const text = document.getElementById('review-text').value;
+
+        if (!name || !text) {
+            alert('Please fill all fields.');
+            return;
+        }
+
+        const stars = '★'.repeat(rating) + '☆'.repeat(5 - rating);
+
+        const newReview = document.createElement('div');
+        newReview.classList.add('review');
+        newReview.innerHTML = `
+            <h4>${name}</h4>
+            <div class="stars">${stars}</div>
+            <p>"${text}"</p>
+        `;
+
+        document.getElementById('reviews-list').appendChild(newReview);
+        document.getElementById('reviewer-name').value = '';
+        document.getElementById('review-text').value = '';
+    }
+
     document.addEventListener('DOMContentLoaded', updateCartCount);
 </script>
 @endsection

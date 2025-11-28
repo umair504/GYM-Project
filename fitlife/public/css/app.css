@@ -1,6 +1,4 @@
-/* ---------------------------
-   GLOBAL STYLES
----------------------------- */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -137,7 +135,7 @@ img {
 }
 
 .card {
-    background: white;
+    background: rgb(247, 240, 240);
     padding: 25px;
     border-radius: 10px;
     text-align: center;

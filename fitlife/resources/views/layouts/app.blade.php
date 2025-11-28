@@ -28,7 +28,7 @@
 </main>
 
 <footer class="footer">
-    <p>&copy; {{ date('Y') }} FitLife Gym. All rights reserved.</p>
+    <p>&copy; {{ date('Y') }} FitLife Gym. All rights reserved. Sir Marks dede pls</p>
 </footer>
 
 <script src="{{ asset('js/app.js') }}"></script>

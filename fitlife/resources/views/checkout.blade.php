@@ -257,5 +257,17 @@
             document.getElementById("success-message").style.display = "none";
         }, 5000);
     });
+    
+document.getElementById('checkout-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Clear the cart
+    localStorage.removeItem('cart');
+
+    // Redirect to thank you page
+    window.location.href = "{{ route('thankyou') }}";
+});
+
+
 </script>
 @endsection

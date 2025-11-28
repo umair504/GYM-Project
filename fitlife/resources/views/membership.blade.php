@@ -7,11 +7,11 @@
     body {
         font-family: 'Poppins', sans-serif;
         margin: 0;
-        background: #f7f7f7;
+        background: #f7f7f7ff;
         color: #333;
     }
     main {
-        flex: 1; /* This pushes footer to the bottom */
+        flex: 1; 
     }
 
     .membership-page {
@@ -19,7 +19,7 @@
         margin: 60px auto;
         text-align: center;
     }
-
+      /*Membership Packages */
     .membership-page h1 {
         font-size: 2.5rem;
         margin-bottom: 30px;
@@ -38,7 +38,7 @@
         background: white;
         border-radius: 12px;
         padding: 25px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 12px rgba(168, 14, 14, 0.1);
         transition: all 0.3s ease;
     }
 
@@ -53,11 +53,11 @@
         color: #222;
         text-transform: uppercase;
     }
-
+     /*price per month   */
     .card p {
         font-size: 1.2rem;
         font-weight: 600;
-        color: #27ae60;
+        color: #a38bb6ff;
         margin-bottom: 15px;
     }
 
@@ -66,7 +66,7 @@
         padding: 0;
         margin: 0 0 20px 0;
     }
-
+      /* info about packages  */
     .card ul li {
         margin: 8px 0;
         color: #555;
@@ -92,7 +92,11 @@
     .bronze { border-top: 6px solid #cd7f32; }
     .silver { border-top: 6px solid #c0c0c0; }
     .gold { border-top: 6px solid #ffd700; }
-    .platinum { border-top: 6px solid #e5e4e2; }
+    .platinum { border-top: 6px solid #6ea3b1ff; }
+    .vip { border-top: 6px solid #4a28a8ff; }
+    .diamond { border-top: 6px solid #2a8022ff; }
+    .elite { border-top: 6px solid #aa400eff; }
+    .diamond-elite { border-top: 6px solid #111111ff; }
 
     /* Responsive adjustments */
     @media (max-width: 768px) {
