@@ -193,29 +193,18 @@
     <p>Upgrade your workouts with high-quality equipment from FitLife Gym!</p>
 
     <div class="product-grid">
-        <!-- 11 PRODUCTS -->
+        <!-- Fetch products dynamically from database -->
         @php
-            $products = [
-                ['name' => 'Dumbbells Set', 'price' => 50, 'img' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStsuxFx_26d4iKsumigu0MaVLkM0y6mxqvGw&s'],
-                ['name' => 'Olympic Barbell', 'price' => 120, 'img' => 'https://images.unsplash.com/photo-1605296867304-46d5465a13f1'],
-                ['name' => 'Weight Plates', 'price' => 80, 'img' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHRhGmxCPMDHB7YALaZX2pfXOQDwKHD40Q9A&s'],
-                ['name' => 'Multi Gym Machine', 'price' => 450, 'img' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYFF5KbjGEU00k8rqvTOlaULJybv8v2cSB7Q&s'],
-                ['name' => 'Resistance Bands Set', 'price' => 25, 'img' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxzBEpLIAyu-iIvvfUcg_M5aChLMOyQdkAdw&s'],
-                ['name' => 'Kettlebell', 'price' => 60, 'img' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSATdXobRMIfUShpnA4oDl3URNRrmNe871nvA&s'],
-                ['name' => 'Speed Jump Rope', 'price' => 15, 'img' => 'https://www.elitefts.com/media/catalog/product/cache/36d7bfb33e8965fc8880f222555067c7/t/a/ta128_1.jpg'],
-                ['name' => 'Workout Gloves', 'price' => 20, 'img' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_2aVMJU1UAgTGBgCrmg5pb7OhdI8-najicQ&s'],
-                ['name' => 'Yoga Mat', 'price' => 30, 'img' => 'https://m.media-amazon.com/images/I/31rlkB1gwwL._SR290,290_.jpg'],
-                ['name' => 'Gym Bag', 'price' => 45, 'img' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcgyOAAmzhO2OFXv_m5-26_SGuqmYwGAuprg&s'],
-                ['name' => 'Gym Towel', 'price' => 10, 'img' => 'https://m.media-amazon.com/images/I/41rU4iv7-nL._AC_US1000_.jpg']
-            ];
+            use App\Models\Product;
+            $products = Product::all();
         @endphp
 
         @foreach ($products as $p)
             <div class="product-card">
-                <img src="{{ $p['img'] }}" alt="{{ $p['name'] }}">
-                <h3>{{ $p['name'] }}</h3>
-                <p class="price">${{ $p['price'] }}</p>
-                <button onclick="addToCart('{{ $p['name'] }}', {{ $p['price'] }})">Add to Cart</button>
+                <img src="{{ $p->image_url }}" alt="{{ $p->name }}">
+                <h3>{{ $p->name }}</h3>
+                <p class="price">${{ $p->price }}</p>
+                <button onclick="addToCart('{{ $p->name }}', {{ $p->price }})">Add to Cart</button>
             </div>
         @endforeach
     </div>

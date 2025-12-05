@@ -7,90 +7,66 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    // =========================
-    // FRONTEND - Display products on /accessories page
-    // =========================
-    public function showFrontend()
-    {
-        $products = Product::all(); // Get all products from database
-        return view('accessories', compact('products'));
-    }
-
-    // =========================
-    // BACKEND - ADMIN PANEL CRUD
-    // =========================
-
-    // Display a listing of products (admin)
+    // Show all products (Admin list page)
     public function index()
     {
         $products = Product::all();
-        return view('products.index', compact('products'));
+        return view('admin.products.index', compact('products'));
     }
 
-    // Show the form for creating a new product
+    public function showFrontend()
+    {
+        $products = Product::all();
+        return view('accessories', compact('products'));
+    }
+
+    // Show create form
     public function create()
     {
-        return view('products.create');
+        return view('admin.products.create');
     }
 
-    // Store a newly created product in database
+    // Store new product
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
+            'name' => 'required',
             'price' => 'required|numeric',
-            'image' => 'nullable|image|max:2048', // optional image
+            'image_url' => 'required|url',
+            'description' => 'nullable',
         ]);
 
-        $imagePath = null;
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('products', 'public');
-        }
+        Product::create($request->all());
 
-        Product::create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'price' => $request->price,
-            'image' => $imagePath,
-        ]);
-
-        return redirect()->route('products.index')->with('success', 'Product added successfully.');
+        return redirect()->route('products.index')->with('success', 'Product added successfully');
     }
 
-    // Show the form for editing an existing product
+    // Show edit form
     public function edit(Product $product)
     {
-        return view('products.edit', compact('product'));
+        return view('admin.products.edit', compact('product'));
     }
 
-    // Update the product in database
+    // Update product
     public function update(Request $request, Product $product)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
+            'name' => 'required',
             'price' => 'required|numeric',
-            'image' => 'nullable|image|max:2048',
+            'image_url' => 'required|url',
+            'description' => 'nullable',
         ]);
 
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('products', 'public');
-            $product->image = $imagePath;
-        }
+        $product->update($request->all());
 
-        $product->name = $request->name;
-        $product->description = $request->description;
-        $product->price = $request->price;
-        $product->save();
-
-        return redirect()->route('products.index')->with('success', 'Product updated successfully.');
+        return redirect()->route('products.index')->with('success', 'Product updated successfully');
     }
 
-    // Delete a product
+    // Delete product
     public function destroy(Product $product)
     {
         $product->delete();
-        return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
+
+        return redirect()->route('products.index')->with('success', 'Product deleted successfully');
     }
 }

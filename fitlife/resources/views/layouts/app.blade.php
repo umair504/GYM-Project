@@ -18,6 +18,8 @@
                 <li><a href="{{ route('accessories') }}">Accessories</a></li>
                 <li><a href="{{ route('cart') }}">Cart <span id="cart-count" class="cart-count">0</span></a></li>
                 <li><a href="{{ route('contact') }}">Contact Us</a></li>
+                <li><a href="/admin/products">Admin</a></li>
+
             </ul>
         </nav>
     </div>
