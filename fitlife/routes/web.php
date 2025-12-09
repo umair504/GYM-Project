@@ -66,3 +66,4 @@ Route::prefix('admin')->group(function() {
 
 });
 
+Route::get('/search-products', [ProductController::class, 'search'])->name('products.search');

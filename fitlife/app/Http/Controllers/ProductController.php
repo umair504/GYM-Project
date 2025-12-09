@@ -20,6 +20,24 @@ class ProductController extends Controller
         return view('accessories', compact('products'));
     }
 
+
+    // Add this method to your ProductController.php
+public function search(Request $request)
+{
+    $query = $request->get('q');
+    
+    if (strlen($query) < 2) {
+        return response()->json([]);
+    }
+    
+    $results = Product::where('name', 'LIKE', "%{$query}%")
+        ->orWhere('description', 'LIKE', "%{$query}%")
+        ->limit(10)
+        ->get(['id', 'name', 'price', 'image_url', 'description']);
+    
+    return response()->json($results);
+}
+
     // Show create form
     public function create()
     {
