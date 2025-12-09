@@ -3,6 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\MembershipPlanController;
+use App\Http\Controllers\adminDashboard;
+
 
 
 Route::get('/', function () {
@@ -33,7 +36,10 @@ require __DIR__.'/auth.php';
 Route::get('/', fn() => view('home'))->name('home');
 
 // Membership page
-Route::get('/membership', fn() => view('membership'))->name('membership');
+
+// Frontend routes
+Route::get('/membership-plans', [MembershipPlanController::class, 'index'])->name('membership-plans');
+Route::get('/membership-plans/{slug}', [MembershipPlanController::class, 'show'])->name('membership-plans.show');
 
 // Accessories page
 Route::get('/accessories', [ProductController::class, 'showFrontend'])->name('accessories');
@@ -55,15 +61,19 @@ Route::get('/thankyou', fn() => view('thankyou'))->name('thankyou');
 Route::resource('products', ProductController::class);
 
 
-
-
 // Admin Routes
-Route::prefix('admin')->group(function() {
-
+Route::prefix('admin')->name('admin.')->group(function() {
     Route::middleware(['auth'])->group(function() {
+        Route::get('/', [adminDashboard::class, 'index'])->name('admin.dashboard');
         Route::resource('products', ProductController::class);
+        
+        Route::get('/membership-plans', [MembershipPlanController::class, 'adminIndex'])->name('membership-plans.index');
+        Route::get('/membership-plans/create', [MembershipPlanController::class, 'create'])->name('membership-plans.create');
+        Route::post('/membership-plans', [MembershipPlanController::class, 'store'])->name('membership-plans.store');
+        Route::get('/membership-plans/{membershipPlan}/edit', [MembershipPlanController::class, 'edit'])->name('membership-plans.edit');
+        Route::put('/membership-plans/{membershipPlan}', [MembershipPlanController::class, 'update'])->name('membership-plans.update');
+        Route::delete('/membership-plans/{membershipPlan}', [MembershipPlanController::class, 'destroy'])->name('membership-plans.destroy');
     });
-
 });
 
 Route::get('/search-products', [ProductController::class, 'search'])->name('products.search');

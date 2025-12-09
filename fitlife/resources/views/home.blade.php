@@ -126,7 +126,7 @@
 <div class="hero">
     <h1>Welcome to FitLife Gym</h1>
     <p>Train Hard. Stay Strong. Live Fit.</p>
-    <a href="{{ route('membership') }}" class="btn-main">Join Now</a>
+    <a href="{{ route('membership-plans') }}" class="btn-main">Join Now</a>
 </div>
 
 <!-- Popular Accessories Section -->
@@ -182,7 +182,7 @@
         </div>
     </div>
     <br>
-    <a href="{{ route('membership') }}" class="btn-main">Explore Memberships</a>
+    <a href="{{ route('membership-plans') }}" class="btn-main">Explore Memberships</a>
 </div>
 
 <script>

@@ -4,6 +4,7 @@
 
 @section('content')
 <style>
+    /* Your existing CSS styles here */
     body {
         font-family: 'Poppins', sans-serif;
         margin: 0;
@@ -19,7 +20,31 @@
         margin: 60px auto;
         text-align: center;
     }
-      /*Membership Packages */
+    
+    /* Cart Notification Styling */
+    #cart-notification {
+        display: none;
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        background: #27ae60;
+        color: white;
+        padding: 15px 25px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        z-index: 1000;
+        font-weight: 600;
+        animation: fadeInOut 1.5s ease;
+    }
+    
+    @keyframes fadeInOut {
+        0% { opacity: 0; transform: translateY(-10px); }
+        20% { opacity: 1; transform: translateY(0); }
+        80% { opacity: 1; transform: translateY(0); }
+        100% { opacity: 0; transform: translateY(-10px); }
+    }
+    
+    /*Membership Packages */
     .membership-page h1 {
         font-size: 2.5rem;
         margin-bottom: 30px;
@@ -40,6 +65,7 @@
         padding: 25px;
         box-shadow: 0 4px 12px rgba(168, 14, 14, 0.1);
         transition: all 0.3s ease;
+        position: relative;
     }
 
     .card:hover {
@@ -53,7 +79,8 @@
         color: #222;
         text-transform: uppercase;
     }
-     /*price per month   */
+    
+    /*price per month   */
     .card p {
         font-size: 1.2rem;
         font-weight: 600;
@@ -66,7 +93,8 @@
         padding: 0;
         margin: 0 0 20px 0;
     }
-      /* info about packages  */
+    
+    /* info about packages  */
     .card ul li {
         margin: 8px 0;
         color: #555;
@@ -81,6 +109,9 @@
         cursor: pointer;
         font-size: 1rem;
         transition: all 0.3s ease;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
 
     .btn:hover {
@@ -106,106 +137,124 @@
         .card {
             padding: 20px;
         }
+        #cart-notification {
+            top: 60px;
+            right: 10px;
+            left: 10px;
+            text-align: center;
+        }
     }
 </style>
 
+<!-- Cart Notification Element -->
+<div id="cart-notification">✓ Added to cart!</div>
+
+<!-- ... existing CSS and HTML ... -->
+
 <div class="container membership-page">
     <h1>Membership Packages</h1>
-    <div class="membership-grid">
-
-        <div class="card bronze">
-            <h2>Bronze</h2>
-            <p>$20/month</p>
-            <ul>
-                <li>Basic Gym Access</li>
-                <li>Locker Facility</li>
-            </ul>
-            <button class="btn">Choose Bronze</button>
+    
+    @if($plans->isEmpty())
+        <div class="alert alert-info">
+            <p>No membership plans available at the moment. Please check back later.</p>
         </div>
-
-        <div class="card silver">
-            <h2>Silver</h2>
-            <p>$40/month</p>
-            <ul>
-                <li>Full Gym Access</li>
-                <li>2 Personal Trainer Sessions</li>
-                <li>Access to Group Classes</li>
-            </ul>
-            <button class="btn">Choose Silver</button>
+    @else
+        <div class="membership-grid">
+            @foreach($plans as $plan)
+                <div class="card {{ $plan->color_class ?? '' }}">
+                    <h2>{{ $plan->name }}</h2>
+                    <p>${{ number_format($plan->price, 2) }}/{{ $plan->duration }}</p>
+                    
+                    @if($plan->description)
+                        <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">
+                            {{ $plan->description }}
+                        </p>
+                    @endif
+                    
+                    <ul>
+                        @foreach($plan->features_array as $feature)
+                            <li>{{ $feature }}</li>
+                        @endforeach
+                    </ul>
+                    
+                    <button class="btn" onclick="addToCart('{{ $plan->name }} Membership', {{ $plan->price }})">
+                        Choose {{ $plan->name }}
+                    </button>
+                </div>
+            @endforeach
         </div>
-
-        <div class="card gold">
-            <h2>Gold</h2>
-            <p>$60/month</p>
-            <ul>
-                <li>Unlimited Access</li>
-                <li>Personal Trainer</li>
-                <li>Sauna & Spa</li>
-                <li>Group Fitness Classes</li>
-            </ul>
-            <button class="btn">Choose Gold</button>
-        </div>
-
-        <div class="card platinum">
-            <h2>Platinum</h2>
-            <p>$90/month</p>
-            <ul>
-                <li>All Gold Benefits</li>
-                <li>Nutrition Plan</li>
-                <li>24/7 Gym Access</li>
-                <li>Priority Booking</li>
-            </ul>
-            <button class="btn">Choose Platinum</button>
-        </div>
-
-        <div class="card diamond">
-            <h2>Diamond</h2>
-            <p>$120/month</p>
-            <ul>
-                <li>All Platinum Benefits</li>
-                <li>Exclusive Fitness Workshops</li>
-                <li>1-on-1 Diet Consultation</li>
-                <li>Free Fitness Merchandise</li>
-            </ul>
-            <button class="btn">Choose Diamond</button>
-        </div>
-
-        <div class="card vip">
-            <h2>VIP</h2>
-            <p>$150/month</p>
-            <ul>
-                <li>Private Training Zone</li>
-                <li>Unlimited Trainer Access</li>
-                <li>Free Supplements</li>
-                <li>Access to Fitness Lounge</li>
-            </ul>
-            <button class="btn">Choose VIP</button>
-        </div>
-
-        <div class="card elite">
-            <h2>Elite</h2>
-            <p>$200/month</p>
-            <ul>
-                <li>All VIP Benefits</li>
-                <li>Physiotherapy Sessions</li>
-                <li>Body Composition Tracking</li>
-                <li>24/7 Personal Support</li>
-            </ul>
-            <button class="btn">Choose Elite</button>
-        </div>
-
-        <div class="card diamond-elite">
-            <h2>Diamond Elite</h2>
-            <p>$250/month</p>
-            <ul>
-                <li>All Elite Benefits</li>
-                <li>Home Workout Planning</li>
-                <li>Exclusive Gym Gear Kit</li>
-                <li>Annual Fitness Retreat Pass</li>
-            </ul>
-            <button class="btn">Choose Diamond Elite</button>
-        </div>
-
-    </div>
+    @endif
 </div>
+
+<!-- ... existing JavaScript ... -->
+
+<script>
+    // Initialize cart
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    function addToCart(name, price) {
+        const existingItem = cart.find(item => item.name === name);
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({ 
+                name, 
+                price, 
+                quantity: 1,
+                addedAt: new Date().toISOString()
+            });
+        }
+        localStorage.setItem('cart', JSON.stringify(cart));
+        showCartNotification(name);
+        updateCartCount();
+    }
+
+    function showCartNotification(itemName) {
+        const notification = document.getElementById('cart-notification');
+        if (notification) {
+            notification.textContent = `✓ ${itemName} added to cart!`;
+            notification.style.display = 'block';
+            
+            // Reset animation
+            notification.style.animation = 'none';
+            setTimeout(() => {
+                notification.style.animation = 'fadeInOut 1.5s ease';
+            }, 10);
+            
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 1500);
+        }
+    }
+
+    function updateCartCount() {
+        const cartCountElement = document.querySelector('.cart-count');
+        if (cartCountElement) {
+            let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCountElement.textContent = totalItems;
+            
+            // Add animation to cart count
+            cartCountElement.style.transform = 'scale(1.3)';
+            setTimeout(() => {
+                cartCountElement.style.transform = 'scale(1)';
+            }, 300);
+        }
+    }
+
+    // Initialize cart count on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        updateCartCount();
+        
+        // Add visual feedback on button click
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Add click animation
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+        });
+    });
+</script>
 @endsection

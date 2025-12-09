@@ -14,11 +14,11 @@
         <nav>
             <ul class="nav-links">
                 <li><a href="{{ route('home') }}">Home</a></li>
-                <li><a href="{{ route('membership') }}">Membership</a></li>
+                <li><a href="{{ route('membership-plans') }}">Membership</a></li>
                 <li><a href="{{ route('accessories') }}">Accessories</a></li>
                 <li><a href="{{ route('cart') }}">Cart <span id="cart-count" class="cart-count">0</span></a></li>
                 <li><a href="{{ route('contact') }}">Contact Us</a></li>
-                <li><a href="/admin/products">Admin</a></li>
+                <li><a href="/admin">Admin</a></li>
 
             </ul>
         </nav>
