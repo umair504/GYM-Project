@@ -1,2 +1,0 @@
-# GYM-Project
-Laravel Project

@@ -11,6 +11,8 @@
         color: #333;
     }
 
+
+    
     .cart-page {
         width: 90%;
         margin: 60px auto;
